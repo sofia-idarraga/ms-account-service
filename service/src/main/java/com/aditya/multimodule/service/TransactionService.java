@@ -8,13 +8,8 @@ import com.aditya.multimodule.model.dto.TransactionDTO;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface MovementUseCase extends BaseCrudUseCase<Movement,Long>{
-
-    Result<List<Movement>> findAllByClientNit(Long clientNit);
+public interface TransactionService {
 
     Result<List<ReportDTO>> generateReport(Long clientNit, LocalDate initDate, LocalDate endDate);
-
     Result<Movement> createMovement(TransactionDTO transactionDTO);
-
-    Result<Movement> save(Movement movement);
 }

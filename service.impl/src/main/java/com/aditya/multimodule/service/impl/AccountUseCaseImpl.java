@@ -4,7 +4,6 @@ import com.aditya.multimodule.model.Account;
 import com.aditya.multimodule.model.Client;
 import com.aditya.multimodule.model.commons.ErrorCode;
 import com.aditya.multimodule.model.commons.Result;
-import com.aditya.multimodule.model.commons.ResultError;
 import com.aditya.multimodule.repository.adapters.AccountAdapter;
 import com.aditya.multimodule.rest.RestClientAdapter;
 import com.aditya.multimodule.service.AccountUseCase;
@@ -38,17 +37,17 @@ public class AccountUseCaseImpl implements AccountUseCase {
     }
 
     @Override
-    public Result<Account> findAccountByNumber(Long nit) {
+    public Result<Account> findById(Long nit) {
         return accountAdapter.findById(nit);
     }
 
     @Override
-    public Result<List<Account>> findAllAccounts(String direction) {
+    public Result<List<Account>> findAll(String direction) {
         return accountAdapter.findAll(direction);
     }
 
     @Override
-    public Result<List<Account>> findAllAccounts(int pageNumber, int pageSize, String sortDirection) {
+    public Result<List<Account>> findAll(int pageNumber, int pageSize, String sortDirection) {
         return accountAdapter.findAll(pageNumber, pageSize, sortDirection);
     }
 
@@ -63,7 +62,7 @@ public class AccountUseCaseImpl implements AccountUseCase {
     }
 
     @Override
-    public Result<Boolean> deleteAccountByNumber(Long nit) {
+    public Result<Boolean> deleteById(Long nit) {
         return accountAdapter.deleteById(nit);
     }
 }

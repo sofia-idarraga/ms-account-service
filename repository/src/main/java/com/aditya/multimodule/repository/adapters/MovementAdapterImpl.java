@@ -5,7 +5,6 @@ import com.aditya.multimodule.model.Movement;
 import com.aditya.multimodule.model.MovementType;
 import com.aditya.multimodule.model.commons.ErrorCode;
 import com.aditya.multimodule.model.commons.Result;
-import com.aditya.multimodule.model.commons.ResultError;
 import com.aditya.multimodule.repository.enitites.MovementEntity;
 import com.aditya.multimodule.repository.repositories.MovementRepository;
 import org.modelmapper.ModelMapper;
