@@ -35,8 +35,8 @@ public class RestClientAdapterImpl implements RestClientAdapter {
 
             return validateSapResponse(responseEntity);
         } catch (Exception exception) {
-            return new Result<Client>().addError(new ResultError(ErrorCode.CLIENT_ERROR,
-                    "An error prevented the client from being retrieved. NIT: " + nit));
+            return Result.errorResult(ErrorCode.CLIENT_ERROR,
+                    "An error prevented the client from being retrieved. NIT: " + nit);
         }
     }
 
@@ -47,14 +47,13 @@ public class RestClientAdapterImpl implements RestClientAdapter {
                 .filter(response -> response.getBody() != null)
                 .map(ResponseEntity::getBody)
                 .filter(Result::isSuccess)
-                .orElse(new Result<T>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                        "Error trying to find the client. Status code: " + responseEntity.getStatusCodeValue())));
+                .orElse(Result.errorResult(ErrorCode.SERVER_ERROR,
+                        "Error trying to find the client. Status code: " + responseEntity.getStatusCodeValue()));
 
     }
 
     private static Result<Client> getError(int responseEntity) {
-        return new Result<Client>().addError(
-                new ResultError(ErrorCode.SERVER_ERROR,
-                        "Error trying to find the client. Status code: " + responseEntity));
+        return Result.errorResult(ErrorCode.SERVER_ERROR,
+                        "Error trying to find the client. Status code: " + responseEntity);
     }
 }

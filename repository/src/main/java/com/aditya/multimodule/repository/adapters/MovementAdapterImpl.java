@@ -37,8 +37,8 @@ public class MovementAdapterImpl implements MovementAdapter {
             model.setDate(LocalDate.now());
             return new Result<>(entityToModel(repository.save(modelToEntity(model))));
         } catch (Exception exception) {
-            return new Result<Movement>().addError(new ResultError(SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -50,12 +50,12 @@ public class MovementAdapterImpl implements MovementAdapter {
                 return new Result<>(
                         entityToModel(result.get()));
             } else {
-                return new Result<Movement>().addError(new ResultError(NOT_FOUND,
-                        "Movement not found"));
+                return Result.errorResult(NOT_FOUND,
+                        "Movement not found");
             }
         } catch (Exception exception) {
-            return new Result<Movement>().addError(new ResultError(SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -77,13 +77,13 @@ public class MovementAdapterImpl implements MovementAdapter {
 
                 return new Result<>(entityToModel(existingMovement));
             } else {
-                return new Result<Movement>().addError(new ResultError(ErrorCode.NOT_FOUND,
-                        "Movement with ID " + movement.getId() + " not found."));
+                return Result.errorResult(ErrorCode.NOT_FOUND,
+                        "Movement with ID " + movement.getId() + " not found.");
             }
         } catch (Exception exception) {
 
-            return new Result<Movement>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -97,8 +97,8 @@ public class MovementAdapterImpl implements MovementAdapter {
                             .collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Movement>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -112,8 +112,8 @@ public class MovementAdapterImpl implements MovementAdapter {
                             .collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Movement>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -127,8 +127,8 @@ public class MovementAdapterImpl implements MovementAdapter {
                             .collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Movement>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -142,8 +142,8 @@ public class MovementAdapterImpl implements MovementAdapter {
                             .collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Movement>>().addError(new ResultError(SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -160,8 +160,8 @@ public class MovementAdapterImpl implements MovementAdapter {
                             .collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Movement>>().addError(new ResultError(SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 

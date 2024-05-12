@@ -3,7 +3,6 @@ package com.aditya.multimodule.repository.adapters;
 import com.aditya.multimodule.model.Account;
 import com.aditya.multimodule.model.commons.ErrorCode;
 import com.aditya.multimodule.model.commons.Result;
-import com.aditya.multimodule.model.commons.ResultError;
 import com.aditya.multimodule.repository.enitites.AccountEntity;
 import com.aditya.multimodule.repository.repositories.AccountRepository;
 import org.modelmapper.ModelMapper;
@@ -30,8 +29,8 @@ public class AccountAdapterImpl implements AccountAdapter {
         try {
             return new Result<>(entityToModel(repository.save(modelToEntity(model))));
         } catch (Exception exception) {
-            return new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -43,12 +42,12 @@ public class AccountAdapterImpl implements AccountAdapter {
                 return new Result<>(
                         entityToModel(result.get()));
             } else {
-                return new Result<Account>().addError(new ResultError(ErrorCode.NOT_FOUND,
-                        "Account with Number " + aLong + " not found."));
+                return Result.errorResult(ErrorCode.NOT_FOUND,
+                        "Account with Number " + aLong + " not found.");
             }
         } catch (Exception exception) {
-            return new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -70,13 +69,13 @@ public class AccountAdapterImpl implements AccountAdapter {
 
                 return new Result<>(entityToModel(existingAccount));
             } else {
-                return new Result<Account>().addError(new ResultError(ErrorCode.NOT_FOUND,
-                        "Account with Number " + account.getNumber() + " not found."));
+                return Result.errorResult(ErrorCode.NOT_FOUND,
+                        "Account with Number " + account.getNumber() + " not found.");
             }
         } catch (Exception exception) {
 
-            return new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -90,8 +89,8 @@ public class AccountAdapterImpl implements AccountAdapter {
                             .collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Account>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -104,8 +103,8 @@ public class AccountAdapterImpl implements AccountAdapter {
                             .map(this::entityToModel).collect(Collectors.toList())
             );
         } catch (Exception exception) {
-            return new Result<List<Account>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -127,8 +126,8 @@ public class AccountAdapterImpl implements AccountAdapter {
                             .map(this::entityToModel)
                             .collect(Collectors.toList()));
         } catch (Exception exception) {
-            return new Result<List<Account>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 
@@ -149,7 +148,7 @@ public class AccountAdapterImpl implements AccountAdapter {
             List<AccountEntity> accounts = repository.findByClientNit(clientId);
 
             if (accounts.isEmpty()) {
-                return new Result<Boolean>().addError(new ResultError(ErrorCode.NOT_FOUND, "No accounts found for client with Nit: " + clientId));
+                return Result.errorResult(ErrorCode.NOT_FOUND, "No accounts found for client with Nit: " + clientId);
             }
 
             accounts.forEach(account -> account.setState(false));
@@ -157,8 +156,8 @@ public class AccountAdapterImpl implements AccountAdapter {
             return new Result<Boolean>(true);
         } catch (Exception exception) {
 
-            return new Result<Boolean>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                    exception.getMessage()));
+            return Result.errorResult(ErrorCode.SERVER_ERROR,
+                    exception.getMessage());
         }
     }
 

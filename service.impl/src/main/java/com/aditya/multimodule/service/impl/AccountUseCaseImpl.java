@@ -33,8 +33,8 @@ public class AccountUseCaseImpl implements AccountUseCase {
         Result<Client> clientResult = clientAdapter.getClient(account.getClientNit().toString());
         return clientResult.isSuccess()
                 ? accountAdapter.save(account)
-                : new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                "Account could not be created due to client with given NIT could not be found "));
+                : Result.errorResult(ErrorCode.SERVER_ERROR,
+                "Account could not be created due to client with given NIT could not be found ");
     }
 
     @Override
