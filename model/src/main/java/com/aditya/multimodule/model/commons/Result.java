@@ -1,17 +1,19 @@
 package com.aditya.multimodule.model.commons;
 
-import lombok.Builder;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Getter
 public class Result<T> {
 
     private T value;
     private List<ResultError> errors;
+
+    public Result() {
+        this.errors = new ArrayList<>();
+    }
 
     public Result(T value) {
         this.value = value;
@@ -34,8 +36,8 @@ public class Result<T> {
         return this;
     }
 
-    public List<ResultError> getErrors(){
-        if (this.errors == null){
+    public List<ResultError> getErrors() {
+        if (this.errors == null) {
             this.errors = new ArrayList<>();
         }
 
