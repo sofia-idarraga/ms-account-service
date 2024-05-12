@@ -44,7 +44,7 @@ public class AccountAdapterImpl implements AccountAdapter {
                         entityToModel(result.get()));
             } else {
                 return new Result<Account>().addError(new ResultError(ErrorCode.NOT_FOUND,
-                        "Item not found"));
+                        "Account with Number " + aLong + " not found."));
             }
         } catch (Exception exception) {
             return new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
@@ -76,6 +76,21 @@ public class AccountAdapterImpl implements AccountAdapter {
         } catch (Exception exception) {
 
             return new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
+                    exception.getMessage()));
+        }
+    }
+
+    @Override
+    public Result<List<Account>> findAllAccountsByNit(Long clientNit) {
+        try {
+            List<AccountEntity> accounts = repository.findByClientNit(clientNit);
+            return new Result<>(
+                    accounts.stream()
+                            .map(this::entityToModel)
+                            .collect(Collectors.toList())
+            );
+        } catch (Exception exception) {
+            return new Result<List<Account>>().addError(new ResultError(ErrorCode.SERVER_ERROR,
                     exception.getMessage()));
         }
     }
@@ -126,6 +141,8 @@ public class AccountAdapterImpl implements AccountAdapter {
             return new Result<>(false);
         }
     }
+
+
     @Override
     public Result<Boolean> deactivateAccount(Long clientId) {
         try {

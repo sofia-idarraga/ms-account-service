@@ -48,13 +48,13 @@ public class RestClientAdapterImpl implements RestClientAdapter {
                 .map(ResponseEntity::getBody)
                 .filter(Result::isSuccess)
                 .orElse(new Result<T>().addError(new ResultError(ErrorCode.SERVER_ERROR,
-                        "Error trying to delete the client. Status code: " + responseEntity.getStatusCodeValue())));
+                        "Error trying to find the client. Status code: " + responseEntity.getStatusCodeValue())));
 
     }
 
     private static Result<Client> getError(int responseEntity) {
         return new Result<Client>().addError(
                 new ResultError(ErrorCode.SERVER_ERROR,
-                        "Error trying to delete the client. Status code: " + responseEntity));
+                        "Error trying to find the client. Status code: " + responseEntity));
     }
 }

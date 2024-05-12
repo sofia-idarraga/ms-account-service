@@ -44,7 +44,8 @@ public class Result<T> {
         return this.errors;
     }
 
-    public Boolean validateErrorCode(ErrorCode errorCode) {
-        return this.errors.stream().anyMatch(metroError -> metroError.getCode().equals(errorCode));
+    public static <T> Result<T> errorResult(ErrorCode errorCode, String message) {
+        return new Result<T>().addError(new ResultError(errorCode,
+                message));
     }
 }

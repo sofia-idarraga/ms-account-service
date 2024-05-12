@@ -1,10 +1,12 @@
 package com.aditya.multimodule.model.dto;
 
-import com.aditya.multimodule.model.Type;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class TransactionDTO {
-    private Long number;
-    private Type type;
+    private Long accountNumber;
     private Double value;
 
 }

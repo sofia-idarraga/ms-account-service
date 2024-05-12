@@ -1,8 +1,12 @@
 package com.aditya.multimodule.service.impl;
 
 import com.aditya.multimodule.model.Account;
+import com.aditya.multimodule.model.Client;
+import com.aditya.multimodule.model.commons.ErrorCode;
 import com.aditya.multimodule.model.commons.Result;
+import com.aditya.multimodule.model.commons.ResultError;
 import com.aditya.multimodule.repository.adapters.AccountAdapter;
+import com.aditya.multimodule.rest.RestClientAdapter;
 import com.aditya.multimodule.service.AccountUseCase;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,16 +18,23 @@ import java.util.List;
 @Slf4j
 public class AccountUseCaseImpl implements AccountUseCase {
 
+    private final RestClientAdapter clientAdapter;
+
     private final AccountAdapter accountAdapter;
 
 
-    public AccountUseCaseImpl(AccountAdapter accountAdapter) {
+    public AccountUseCaseImpl(RestClientAdapter clientAdapter, AccountAdapter accountAdapter) {
+        this.clientAdapter = clientAdapter;
         this.accountAdapter = accountAdapter;
     }
 
     @Override
     public Result<Account> createAccount(Account account) {
-        return accountAdapter.save(account);
+        Result<Client> clientResult = clientAdapter.getClient(account.getClientNit().toString());
+        return clientResult.isSuccess()
+                ? accountAdapter.save(account)
+                : new Result<Account>().addError(new ResultError(ErrorCode.SERVER_ERROR,
+                "Account could not be created due to client with given NIT could not be found "));
     }
 
     @Override

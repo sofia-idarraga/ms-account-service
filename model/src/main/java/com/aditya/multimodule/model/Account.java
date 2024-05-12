@@ -13,4 +13,12 @@ public class Account {
     private Double initialBalance;
     private Double balance;
     private Boolean state;
+
+    public void setNewBalance(Double movementValue){
+        this.balance += movementValue;
+    }
+
+    public void reversBalance(Double movementValue){
+        this.balance -= movementValue;
+    }
 }
