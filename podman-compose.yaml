@@ -1,0 +1,47 @@
+version: '1'
+
+services:
+  mysql:
+      container_name: mysql
+      image: docker.io/library/mysql:latest
+      ports:
+        - "3306:3306"
+      environment:
+        MYSQL_ROOT_USERNAME: root
+        MYSQL_ROOT_PASSWORD: idarraga
+      networks:
+        - tasks-network  
+  ms-client-service:
+    container_name: ms-client-service
+    image: ms-client-service
+    ports:
+      - "8081:8081"
+    environment:
+      ACCOUNT_SERVICE: http://ms-account-service:8082/api/cuentas
+      DATABASE_URL: jdbc:mysql://mysql:3306/develop
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: idarraga
+    depends_on:
+      - mysql
+      - ms-account-service
+    networks:
+      - tasks-network
+  ms-account-service:
+    container_name: ms-account-service
+    image: ms-account-service
+    ports:
+      - "8082:8082"
+    environment:
+      ACCOUNT_SERVICE: http://ms-client-service:8081/api/clientes
+      DATABASE_URL: jdbc:mysql://mysql:3306/develop
+      DATABASE_USERNAME: root
+      DATABASE_PASSWORD: idarraga
+    depends_on:
+      - mysql
+    networks:
+      - tasks-network
+  
+
+networks:
+  tasks-network:
+    driver: bridge

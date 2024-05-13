@@ -64,3 +64,11 @@ Para crear la imagen ejecute
  ```shell script
   podman build -t ms-account-service:latest -f Dockerfile .
   ```
+
+## Archivos extras:
+
+En la raiz del proyecto encontrará: 
+
+-  Script de base datos, entidades y esquema datos, con el nombre
+   BaseDatos.sql.
+-  Archivo Json, de Aplicación Postman, para validación de los endpoints.
