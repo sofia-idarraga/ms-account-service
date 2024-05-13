@@ -14,7 +14,7 @@ Para ejecutar el microservicio y los tests correctamente, asegúrate de tener co
 
 - `server.port`: ${SERVER_PORT} Define el puerto de la aplicación, por defecto es 8081
 
-- `spring.account.service`: ${ACCOUNT_SERVICE} Esta variable especifica la URL del servicio de cuentas bancarias al que el microservicio se conecta. Por defecto, apunta a `http://localhost:8082/api/cuentas`.
+- `spring.account.service`: ${ACCOUNT_SERVICE} Esta variable especifica la URL del servicio de clientes al que el microservicio se conecta. Por defecto, apunta a `http://localhost:8081/api/clientes`.
 
 - `spring.datasource.url`: ${DATABASE_URL} Esta variable define la URL de conexión a la base de datos.
 
@@ -33,7 +33,7 @@ Las variables de entorno se utilizan para configurar aspectos específicos de la
 
 - `PUT /api/cuentas/{number}`: Actualiza la información de la cuenta correspondiente al número especificado. Se espera un objeto JSON con la información actualizada de la cuenta en el cuerpo de la solicitud.
 
-- `PUT /api/cuentas/desactivar/{nit}`: Desactiva la cuenta correspondiente al NIT especificado.
+- `PUT /api/cuentas/desactivar/{nit}`: Desactiva las cuentsa correspondientes al NIT de la persona especificado.
 
 ### Movimientos
 
@@ -50,7 +50,7 @@ Los siguientes endpoints aplican para ambas entidades
 
 - `GET /api/${entidad}/todos`: Retorna todos. Se puede especificar el orden ascendente ("ASC") o descendente ("DESC") utilizando el parámetro de consulta `direction`.
 
-- `GET /api/${entidad}/todos/page`: Retorna una lista paginada de clientes. Se puede especificar el número de página, el tamaño de página y el orden ascendente o descendente utilizando los parámetros de consulta correspondientes `direction`, `pageNumber` y `pageSize`.
+- `GET /api/${entidad}/todos/page`: Retorna una lista paginada de entidades. Se puede especificar el número de página, el tamaño de página y el orden ascendente o descendente utilizando los parámetros de consulta correspondientes `direction`, `pageNumber` y `pageSize`.
 
 - `DELETE /api/${entidad}/{nit}`: Elimina el item correspondiente al id especificado.
 
