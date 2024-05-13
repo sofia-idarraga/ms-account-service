@@ -30,13 +30,6 @@ public class MovementController extends AbstractCrudController<Movement, Long, M
         return processResult(result);
     }
 
-    @GetMapping("/cliente/{nit}")
-    public ResponseEntity<Result<List<Movement>>> findMovementsByClientNit(@PathVariable Long nit) {
-        Result<List<Movement>> result = useCase.findAllByClientNit(nit);
-        return processResult(result);
-    }
-
-
     @GetMapping("/reportes")
     public ResponseEntity<Result<List<ReportDTO>>> generateReport(@RequestParam String nit,
                                                                   @RequestParam String initDate,

@@ -3,7 +3,6 @@ package com.aditya.multimodule.rest;
 import com.aditya.multimodule.model.Client;
 import com.aditya.multimodule.model.commons.ErrorCode;
 import com.aditya.multimodule.model.commons.Result;
-import com.aditya.multimodule.model.commons.ResultError;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -54,6 +53,6 @@ public class RestClientAdapterImpl implements RestClientAdapter {
 
     private static Result<Client> getError(int responseEntity) {
         return Result.errorResult(ErrorCode.SERVER_ERROR,
-                        "Error trying to find the client. Status code: " + responseEntity);
+                "Error trying to find the client. Status code: " + responseEntity);
     }
 }

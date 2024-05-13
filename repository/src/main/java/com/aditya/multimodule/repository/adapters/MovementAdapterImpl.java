@@ -87,36 +87,6 @@ public class MovementAdapterImpl implements MovementAdapter {
     }
 
     @Override
-    public Result<List<Movement>> findAllMovementsByAccount(Long accountNumber, LocalDate startDate, LocalDate endDate) {
-        try {
-            List<MovementEntity> accounts = repository.findByAccountNumberAndDateBetween(accountNumber, startDate, endDate);
-            return new Result<>(
-                    accounts.stream()
-                            .map(this::entityToModel)
-                            .collect(Collectors.toList())
-            );
-        } catch (Exception exception) {
-            return Result.errorResult(ErrorCode.SERVER_ERROR,
-                    exception.getMessage());
-        }
-    }
-
-    @Override
-    public Result<List<Movement>> findAllByClientNit(Long clientNit) {
-        try {
-            List<MovementEntity> movements = repository.findByAccountClientNit(clientNit);
-            return new Result<>(
-                    movements.stream()
-                            .map(this::entityToModel)
-                            .collect(Collectors.toList())
-            );
-        } catch (Exception exception) {
-            return Result.errorResult(ErrorCode.SERVER_ERROR,
-                    exception.getMessage());
-        }
-    }
-
-    @Override
     public Result<List<Movement>> findByAccountClientNitAndDateBetween(Long clientNit, LocalDate startDate, LocalDate endDate) {
         try {
             List<MovementEntity> movements = repository.findByAccountClientNitAndDateBetween(clientNit, startDate, endDate);

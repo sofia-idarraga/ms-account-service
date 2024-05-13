@@ -10,11 +10,9 @@ import java.util.List;
 
 public interface MovementUseCase extends BaseCrudUseCase<Movement,Long>{
 
-    Result<List<Movement>> findAllByClientNit(Long clientNit);
 
     Result<List<ReportDTO>> generateReport(Long clientNit, LocalDate initDate, LocalDate endDate);
 
     Result<Movement> createMovement(TransactionDTO transactionDTO);
 
-    Result<Movement> save(Movement movement);
 }

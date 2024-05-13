@@ -23,16 +23,6 @@ public class MovementUseCaseImpl implements MovementUseCase {
     }
 
     @Override
-    public Result<Movement> save(Movement model) {
-        return movementAdapter.save(model);
-    }
-
-    @Override
-    public Result<List<Movement>> findAllByClientNit(Long clientNit) {
-        return movementAdapter.findAllByClientNit(clientNit);
-    }
-
-    @Override
     public Result<Movement> createMovement(TransactionDTO transactionDTO) {
         return transactionService.createMovement(transactionDTO);
     }
