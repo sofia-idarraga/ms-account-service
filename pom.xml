@@ -16,8 +16,8 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.aditya.multimodule</groupId>
-	<artifactId>com.aditya.multimodule</artifactId>
+	<groupId>com.bank.multimodule</groupId>
+	<artifactId>com.bank.multimodule</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>multimodule</name>

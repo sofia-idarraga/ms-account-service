@@ -1,1 +1,1 @@
-insert into Basic(id, name) values(1, 'aditya');
+insert into Basic(id, name) values(1, 'bank');

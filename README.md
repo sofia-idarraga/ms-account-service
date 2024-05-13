@@ -3,4 +3,4 @@ In this project, I have worked on a Spring Application which works on the princi
 
 # How to run this application :
 
-Go to com.aditya.multimodule.application module and run the App.java Application.
+Go to com.bank.multimodule.application module and run the App.java Application.
